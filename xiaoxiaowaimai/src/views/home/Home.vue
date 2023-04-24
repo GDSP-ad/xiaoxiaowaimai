@@ -29,7 +29,15 @@
                             {{ item.name }}
                         </div>
                     </div>
-                    <div class="small-sort"></div>
+                    <div class="small-sort">
+                        <div v-for="(item,index) in data.small_sort" :key="index">
+                            <svg class="icon" aria-hidden="true">
+                                <use :xlink:href="`#${item.icon}`"></use>
+                            </svg>
+                            {{ item.name }}
+                        </div>
+                    </div>
+
                 </div>
             </div>
 
@@ -279,6 +287,23 @@ const data = reactive({
                         }
                         font-size: 14px;
                     }
+                }
+
+                .small-sort {
+                    display: flex;
+                    flex-wrap: wrap;
+                    margin-top: 20px;
+                    div {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        width: 20%;
+                    }
+                    .icon {
+                        width: 30px;
+                        height: 30px;
+                    }
+                    font-size: 14px;
                 }
             }
         }
