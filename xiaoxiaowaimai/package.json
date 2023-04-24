@@ -11,7 +11,8 @@
   "dependencies": {
     "amfe-flexible": "^2.2.1",
     "postcss-pxtorem": "^6.0.0",
-    "vue": "^3.2.47"
+    "vue": "^3.2.47",
+    "vue-router": "^4.1.6"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.1.0",

@@ -11,7 +11,7 @@
 <style scoped>
   div {
     background-color: red;
-    width: 200px;
-    height: 200px;
+    width: 5rem;
+    height: 5rem;
   }
 </style>
