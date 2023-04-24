@@ -22,7 +22,7 @@
 
                 <div class="sort">
                     <div class="big-sort">
-                        <div v-for="(item,index) in data.big_sort" :key="index">
+                        <div v-for="(item, index) in data.big_sort" :key="index">
                             <svg class="icon" aria-hidden="true">
                                 <use :xlink:href="`#${item.icon}`"></use>
                             </svg>
@@ -30,7 +30,7 @@
                         </div>
                     </div>
                     <div class="small-sort">
-                        <div v-for="(item,index) in data.small_sort" :key="index">
+                        <div v-for="(item, index) in data.small_sort" :key="index">
                             <svg class="icon" aria-hidden="true">
                                 <use :xlink:href="`#${item.icon}`"></use>
                             </svg>
@@ -38,6 +38,14 @@
                         </div>
                     </div>
 
+                </div>
+
+                <div>
+                    <van-tabs v-model:active="active" class="tabs" >
+                        <van-tab v-for="(item,index) in data.centent_nav_list"  :title="item.tab">
+                            <NavList :navlist="item.data"></NavList>
+                        </van-tab>
+                    </van-tabs>
                 </div>
             </div>
 
@@ -48,9 +56,11 @@
 
 
 <script setup lang="ts">
-import { reactive } from 'vue';
+import { reactive, ref } from 'vue';
 import Footer from '../../components/Footer.vue';
+import NavList from './components/NavList.vue'
 
+const active = ref(0)
 const data = reactive({
     big_sort: [
         {
@@ -271,6 +281,7 @@ const data = reactive({
 
             .sort {
                 padding: 20px 0;
+
                 .big-sort {
                     display: flex;
 
@@ -280,11 +291,13 @@ const data = reactive({
                         justify-content: center;
                         flex-direction: column;
                         align-items: center;
+
                         .icon {
                             width: 50px;
                             height: 50px;
                             margin-bottom: 5px;
                         }
+
                         font-size: 14px;
                     }
                 }
@@ -293,19 +306,30 @@ const data = reactive({
                     display: flex;
                     flex-wrap: wrap;
                     margin-top: 20px;
+
                     div {
                         display: flex;
                         flex-direction: column;
                         align-items: center;
                         width: 20%;
                     }
+
                     .icon {
                         width: 30px;
                         height: 30px;
                     }
+
                     font-size: 14px;
                 }
             }
+
+            .tabs {
+                padding: 0 20px 10px;
+            }
+
+
         }
     }
-}</style>
+}
+
+</style>
