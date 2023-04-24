@@ -1,26 +1,26 @@
 <template>
     <div class="footer">
         <div>
-            <router-link to="/home" @click="change(0)">
-                <van-icon :name="isSelected[0]?selectedIcons[0]:unselectedIcons[0]" ></van-icon>
+            <router-link to="/home" active-class="active">
+                <van-icon name="wap-home-o" ></van-icon>
                 <div>首页</div>
             </router-link>
         </div>
         <div>
-            <router-link to="/cart" @click="change(1)">
-                <van-icon :name="isSelected[1]?selectedIcons[1]:unselectedIcons[1]" > </van-icon>
+            <router-link to="/cart" active-class="active">
+                <van-icon name="cart-o"> </van-icon>
                 <div>购物车</div>
             </router-link>
         </div>
         <div>
-            <router-link to="/order" @click="change(2)">
-                <van-icon :name="isSelected[2]?selectedIcons[2]:unselectedIcons[2]" ></van-icon>
+            <router-link to="/order" active-class="active">
+                <van-icon name="orders-o" ></van-icon>
                 <div>订单</div>
             </router-link>
         </div>
         <div>
-            <router-link to="/mine" @click="change(3)">
-                <van-icon :name="isSelected[3]?selectedIcons[3]:unselectedIcons[3]"></van-icon>
+            <router-link to="/mine" active-class="active">
+                <van-icon name="user-o"></van-icon>
                 <div>我的</div>
             </router-link>
         </div>
@@ -30,15 +30,8 @@
 
 <script lang="ts" setup>
 import {reactive} from 'vue'
-const unselectedIcons:string[]=reactive(['wap-home-o','cart-o','orders-o','user-o'])
-const selectedIcons:string[]=reactive(['wap-home','cart','balance-list','manager']);
-const isSelected:boolean[]=reactive([true,false,false,false])
 
 
-function change(index:number):void{
-    isSelected.fill(false);
-    isSelected[index]=true;
-}
 
 </script>
 
@@ -55,6 +48,12 @@ function change(index:number):void{
             }
             div {
                 font-size: 0.5rem;
+            }
+            .active {
+                color: #fff400;
+                div {
+                    color: #fff400;
+                }
             }
         }
     }
