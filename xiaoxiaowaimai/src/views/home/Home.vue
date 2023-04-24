@@ -1,11 +1,13 @@
 <template>
-    <div>首页</div>
-    <van-button type="primary">点击</van-button>
+    <div class="home">
+    </div>
 </template>
 
+
+<script setup lang="ts">
+import Footer from '../../components/Footer.vue';
+</script>
+
 <style lang="less" scoped>
-div {
-    background-color: aqua;
-}
 
 </style>
