@@ -1,4 +1,5 @@
 import { createApp } from 'vue'
+import 'animate.css/animate.min.css'
 import './style.css'
 import 'amfe-flexible'
 import App from './App.vue'

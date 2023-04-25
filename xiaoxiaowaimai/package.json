@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "amfe-flexible": "^2.2.1",
+    "animate.css": "^4.1.1",
     "postcss-pxtorem": "^6.0.0",
     "vant": "^4.2.0",
     "vue": "^3.2.47",
