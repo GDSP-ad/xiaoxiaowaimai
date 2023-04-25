@@ -24,6 +24,11 @@ const routes = [
         name: "mine",
         component: () => import('../views/mine/Mine.vue')   
     },
+    {
+        path: '/store',
+        name: "store",
+        component: () => import('../views/store/Store.vue')   
+    },
 ]
 export const router = createRouter({
   history: createWebHashHistory(),

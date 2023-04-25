@@ -1,5 +1,5 @@
 <template>
-<div class="item">
+<div class="item" @click="toStore">
     <img :src="data.pic" alt="">
     <div class="item-right">
         <div class="title">{{ data.title }}</div>
@@ -13,8 +13,14 @@
 </template>
 
 <script setup lang="ts">
-
+import { useRouter } from 'vue-router';
 const props=defineProps(['data'])
+const router=useRouter();
+
+function toStore():void {
+    router.push('/store')
+}
+
 </script>
 
 <style lang="less" scoped>
@@ -41,6 +47,7 @@ const props=defineProps(['data'])
         }
 
         .label {
+            font-size: 12px;
             display: flex;
             div {
                 background-color: #ffc400;
