@@ -1,31 +1,27 @@
 <template>
-    <button @click="show=!show">点击</button>
-    <transition name="animate" enter-active-class="animate__animated animate__fadeInLeft">
-        <div class="store" v-if="show">
-            <Header title="店铺"></Header>
-            <div class="content">
-                <div class="img"></div>
-                <div class="foodSort">
-                    <div class="sort"></div>
-                    <div class="name">{{ data.title }}<img :src="data.img" alt="" class="store-img"></div>
-                    <van-tabs v-model:active="active" color="#ffc400">
-                        <van-tab v-for="(item, index) in data.storeData" :key="index" :title="item.name">
-                            <food-list :index="index" :foodData="item.data"></food-list>
-                        </van-tab>
-                    </van-tabs>
-                </div>
+    <div class="store animate__animated animate__fadeInLeft">
+        <Header title="店铺"></Header>
+        <div class="content">
+            <div class="img"></div>
+            <div class="foodSort">
+                <div class="sort"></div>
+                <div class="name">{{ data.title }}<img :src="data.img" alt="" class="store-img"></div>
+                <van-tabs v-model:active="active" color="#ffc400">
+                    <van-tab v-for="(item, index) in data.storeData" :key="index" :title="item.name">
+                        <food-list :index="index" :foodData="item.data"></food-list>
+                    </van-tab>
+                </van-tabs>
             </div>
-            <!-- <div>
-                <van-action-bar>
-                    <van-action-bar-icon icon="chat-o" text="客服" @click="onClickIcon" />
-                    <van-action-bar-icon icon="cart-o" text="购物车" @click="onClickIcon" />
-                    <van-action-bar-icon icon="shop-o" text="店铺" @click="onClickIcon" />
-                    <van-action-bar-button type="danger" text="立即购买" @click="onClickButton" />
-                </van-action-bar>
-            </div> -->
         </div>
-
-    </transition>
+        <div>
+            <van-action-bar>
+                <van-action-bar-icon icon="chat-o" text="客服"  />
+                <van-action-bar-icon icon="cart-o" text="购物车" />
+                <van-action-bar-button type="warning" text="加入购物车" />
+                <van-action-bar-button type="danger" text="立即购买" />
+            </van-action-bar>
+        </div>
+    </div>
 </template>
 
 <script lang="ts" setup>
@@ -33,26 +29,27 @@ import { reactive, ref } from 'vue';
 import Header from './components/Header.vue';
 import FoodList from './components/FoodList.vue'
 
-let show=ref(true)
+let show = ref(true)
 
 const data = reactive({
     title: '鱼拿酸菜鱼',
     img: 'https://img1.baidu.com/it/u=1599947592,1695977044&fm=253&fmt=auto&app=138&f=JPEG?w=640&h=440',
     storeData: [
         {
+            id:"001",//商店id
             name: "点菜",
             data: {
                 content: "点菜",
                 items: [
                     {
-                        text: "热销套餐",
+                        text: "热销套餐",//所属分类
                         children: [
                             {
                                 pic: "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fwww.cfcy168.com%2FUploadFiles%2F2020%2F2%2F15904074889874037.jpg&refer=http%3A%2F%2Fwww.cfcy168.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1645421933&t=66b58fbba9dce6f6b397e38820de24dc",
                                 title: "隆江猪脚饭",
                                 num: 0,
                                 price: 25.0,
-                                id: 0,
+                                id: 0,//菜品id
                                 add: true,
                             },
                             {
