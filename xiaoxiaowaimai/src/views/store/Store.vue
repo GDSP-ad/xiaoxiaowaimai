@@ -17,7 +17,7 @@
             <van-action-bar>
                 <van-action-bar-icon icon="chat-o" text="客服"  />
                 <van-action-bar-icon icon="cart-o" text="购物车" />
-                <van-action-bar-button type="warning" text="加入购物车" />
+                <van-action-bar-button type="warning" text="加入购物车" @click="addCart"/>
                 <van-action-bar-button type="danger" text="立即购买" />
             </van-action-bar>
         </div>
@@ -26,10 +26,23 @@
 
 <script lang="ts" setup>
 import { reactive, ref } from 'vue';
+import { useStore } from 'vuex';
+import { showNotify } from 'vant';
 import Header from './components/Header.vue';
 import FoodList from './components/FoodList.vue'
 
-let show = ref(true)
+function addCart(){
+    if(store.state.cart.goods.length===0){
+        showNotify('未选择任何商品！');
+    }else{
+        store.commit('addCart');
+        showNotify({ type: 'success', message: '添加成功' });
+    }
+}
+
+const store=useStore();
+
+
 
 const data = reactive({
     title: '鱼拿酸菜鱼',
@@ -46,7 +59,7 @@ const data = reactive({
                         children: [
                             {
                                 pic: "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fwww.cfcy168.com%2FUploadFiles%2F2020%2F2%2F15904074889874037.jpg&refer=http%3A%2F%2Fwww.cfcy168.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1645421933&t=66b58fbba9dce6f6b397e38820de24dc",
-                                title: "隆江猪脚饭",
+                                name: "隆江猪脚饭",
                                 num: 0,
                                 price: 25.0,
                                 id: 0,//菜品id
@@ -54,7 +67,7 @@ const data = reactive({
                             },
                             {
                                 pic: "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fwww.cfcy168.com%2FUploadFiles%2F2020%2F2%2F15904074889874037.jpg&refer=http%3A%2F%2Fwww.cfcy168.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1645421933&t=66b58fbba9dce6f6b397e38820de24dc",
-                                title: "隆江猪脚饭",
+                                name: "隆江猪脚饭",
                                 num: 0,
                                 price: 25.0,
                                 id: 1,
@@ -67,7 +80,7 @@ const data = reactive({
                         children: [
                             {
                                 pic: "https://img1.baidu.com/it/u=1599947592,1695977044&fm=253&fmt=auto&app=138&f=JPEG?w=640&h=440",
-                                title: "无骨酸菜鱼+肥牛双拼",
+                                name: "无骨酸菜鱼+肥牛双拼",
                                 num: 0,
                                 price: 25.0,
                                 id: 5,
@@ -75,7 +88,7 @@ const data = reactive({
                             },
                             {
                                 pic: "https://img1.baidu.com/it/u=1599947592,1695977044&fm=253&fmt=auto&app=138&f=JPEG?w=640&h=440",
-                                title: "香辣水煮鱼+肥牛双拼",
+                                name: "香辣水煮鱼+肥牛双拼",
                                 num: 0,
                                 price: 25.0,
                                 id: 6,
@@ -101,7 +114,7 @@ const data = reactive({
     ],
 
 })
-
+store.commit('addStoreId',data.storeData[0].id);
 
 let active = ref(0);
 </script>

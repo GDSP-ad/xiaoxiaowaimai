@@ -3,31 +3,47 @@
         <div class="left">
             <img :src="props.data.pic" alt="">
             <div class="text">
-                <div class="title">{{ props.data.title }}</div>
-                <van-stepper  min="0" v-if="isSelect" v-model="count"></van-stepper>
-                <van-icon name="add-o" @click="isSelect=true" v-if="!isSelect"></van-icon>
+                <div class="title">{{ props.data.name }}</div>
+                <van-stepper min="0" v-if="isSelect" v-model="count"></van-stepper>
+                <van-icon name="add-o" @click="isSelect = true" v-if="!isSelect"></van-icon>
             </div>
         </div>
-        
+
         <div class="price">￥{{ props.data.price }}</div>
     </div>
 </template>
 
 <script lang="ts" setup>
-import { ref,watch } from 'vue';
+import { ref, watch } from 'vue';
+import { useStore } from 'vuex';
 
-const props=defineProps(['data'])
+const store = useStore();
+const props = defineProps(['data'])
 
 
-let isSelect=ref(false);
-let count=ref(1);
+let isSelect = ref(false);
+let count = ref(0);
 
-watch(count,(newCount,oldCount)=>{
-    if(newCount===0){
-        isSelect.value=false;
-        count.value=1;
+watch(count, (newCount, oldCount) => {
+    if (newCount === 0) {
+        isSelect.value = false;
+        store.commit('reduceGoods',props.data.id)
     }
-        
+    if (isSelect.value) {
+        store.commit('addGoods', {
+            id: props.data.id,
+            name: props.data.name,
+            img: props.data.pic,
+            count: count.value,
+            price: props.data.price
+        })
+    }
+    console.log(store.state.cart.goods)
+})
+
+watch(isSelect, (newValue, oldValue) => {
+    if(isSelect.value)
+        count.value=1;
 })
 
 
@@ -78,4 +94,5 @@ watch(count,(newCount,oldCount)=>{
             }
         }
     }
-}</style>
+}
+</style>
