@@ -16,9 +16,9 @@
         <div>
             <van-action-bar>
                 <van-action-bar-icon icon="chat-o" text="客服"  />
-                <van-action-bar-icon icon="cart-o" text="购物车" />
+                <van-action-bar-icon icon="cart-o" text="购物车" :badge="store.state.cart.goods.length" @click="router.push('/cart')"/>
                 <van-action-bar-button type="warning" text="加入购物车" @click="addCart"/>
-                <van-action-bar-button type="danger" text="立即购买" />
+                <van-action-bar-button type="danger" text="立即购买" @click="buyNow"/>
             </van-action-bar>
         </div>
     </div>
@@ -27,21 +27,33 @@
 <script lang="ts" setup>
 import { reactive, ref } from 'vue';
 import { useStore } from 'vuex';
+import { useRouter } from 'vue-router';
 import { showNotify } from 'vant';
+import { showToast } from 'vant';
 import Header from './components/Header.vue';
 import FoodList from './components/FoodList.vue'
 
 function addCart(){
     if(store.state.cart.goods.length===0){
-        showNotify('未选择任何商品！');
+        showToast('请选择商品');
     }else{
         store.commit('addCart');
-        showNotify({ type: 'success', message: '添加成功' });
+        showToast('添加成功');
+    }
+}
+
+
+function buyNow(){
+    if(store.state.cart.goods.length===0){
+        showToast('请选择商品');
+    }else{
+        store.commit('addCart');
+        router.push('/cart')
     }
 }
 
 const store=useStore();
-
+const router=useRouter();
 
 
 const data = reactive({

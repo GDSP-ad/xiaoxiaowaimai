@@ -1,14 +1,14 @@
 <template>
     <div class="header">
-        <RouterLink to="/home">
-            <van-icon name="arrow-left" class="icon"></van-icon>
-        </RouterLink>
+            <van-icon name="arrow-left" class="icon" @click="router.back()"></van-icon>
         
         <div>{{ title }}</div>
     </div>
 </template>
 
 <script setup lang="ts">
+import { useRouter } from 'vue-router';
+const router=useRouter();
 const props = defineProps(['title']);
 </script>
 
