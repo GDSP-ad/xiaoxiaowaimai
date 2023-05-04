@@ -13,7 +13,7 @@
 
 <script lang="ts" setup>
 import { reactive } from 'vue';
-import FoodListItem from './FoodListItem.vue'
+import FoodListItem from '../../../components/FoodListItem.vue'
 
 const props = defineProps(['index', 'foodData'])
 

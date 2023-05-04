@@ -1,7 +1,7 @@
 <template>
     <div class="content-item">
         <div class="left">
-            <img :src="props.data.pic" alt="">
+            <img :src="props.data.img" alt="">
             <div class="text">
                 <div class="title">{{ props.data.name }}</div>
                 <van-stepper min="0" v-if="isSelect" v-model="count"></van-stepper>
@@ -33,7 +33,7 @@ watch(count, (newCount, oldCount) => {
         store.commit('addGoods', {
             id: props.data.id,
             name: props.data.name,
-            img: props.data.pic,
+            img: props.data.img,
             count: count.value,
             price: props.data.price
         })

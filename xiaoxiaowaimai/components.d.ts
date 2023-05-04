@@ -10,7 +10,9 @@ export {}
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     Empty: typeof import('./src/components/Empty.vue')['default']
+    FoodListItem: typeof import('./src/components/FoodListItem.vue')['default']
     Footer: typeof import('./src/components/Footer.vue')['default']
+    Header: typeof import('./src/components/Header.vue')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
@@ -18,6 +20,8 @@ declare module '@vue/runtime-core' {
     VanActionBarButton: typeof import('vant/es')['ActionBarButton']
     VanActionBarIcon: typeof import('vant/es')['ActionBarIcon']
     VanButton: typeof import('vant/es')['Button']
+    VanCheckbox: typeof import('vant/es')['Checkbox']
+    VanCheckboxGroup: typeof import('vant/es')['CheckboxGroup']
     VanGoodsAction: typeof import('vant/es')['GoodsAction']
     VanGoodsActionBigBtn: typeof import('vant/es')['GoodsActionBigBtn']
     VanGoodsActionMiniBtn: typeof import('vant/es')['GoodsActionMiniBtn']

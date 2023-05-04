@@ -30,7 +30,7 @@ import { useStore } from 'vuex';
 import { useRouter } from 'vue-router';
 import { showNotify } from 'vant';
 import { showToast } from 'vant';
-import Header from './components/Header.vue';
+import Header from '../../components/Header.vue';
 import FoodList from './components/FoodList.vue'
 
 function addCart(){
@@ -70,7 +70,7 @@ const data = reactive({
                         text: "热销套餐",//所属分类
                         children: [
                             {
-                                pic: "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fwww.cfcy168.com%2FUploadFiles%2F2020%2F2%2F15904074889874037.jpg&refer=http%3A%2F%2Fwww.cfcy168.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1645421933&t=66b58fbba9dce6f6b397e38820de24dc",
+                                img: "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fwww.cfcy168.com%2FUploadFiles%2F2020%2F2%2F15904074889874037.jpg&refer=http%3A%2F%2Fwww.cfcy168.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1645421933&t=66b58fbba9dce6f6b397e38820de24dc",
                                 name: "隆江猪脚饭",
                                 num: 0,
                                 price: 25.0,
@@ -78,7 +78,7 @@ const data = reactive({
                                 add: true,
                             },
                             {
-                                pic: "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fwww.cfcy168.com%2FUploadFiles%2F2020%2F2%2F15904074889874037.jpg&refer=http%3A%2F%2Fwww.cfcy168.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1645421933&t=66b58fbba9dce6f6b397e38820de24dc",
+                                img: "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fwww.cfcy168.com%2FUploadFiles%2F2020%2F2%2F15904074889874037.jpg&refer=http%3A%2F%2Fwww.cfcy168.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1645421933&t=66b58fbba9dce6f6b397e38820de24dc",
                                 name: "隆江猪脚饭",
                                 num: 0,
                                 price: 25.0,
@@ -91,7 +91,7 @@ const data = reactive({
                         text: "超级折扣",
                         children: [
                             {
-                                pic: "https://img1.baidu.com/it/u=1599947592,1695977044&fm=253&fmt=auto&app=138&f=JPEG?w=640&h=440",
+                                img: "https://img1.baidu.com/it/u=1599947592,1695977044&fm=253&fmt=auto&app=138&f=JPEG?w=640&h=440",
                                 name: "无骨酸菜鱼+肥牛双拼",
                                 num: 0,
                                 price: 25.0,
@@ -99,7 +99,7 @@ const data = reactive({
                                 add: true,
                             },
                             {
-                                pic: "https://img1.baidu.com/it/u=1599947592,1695977044&fm=253&fmt=auto&app=138&f=JPEG?w=640&h=440",
+                                img: "https://img1.baidu.com/it/u=1599947592,1695977044&fm=253&fmt=auto&app=138&f=JPEG?w=640&h=440",
                                 name: "香辣水煮鱼+肥牛双拼",
                                 num: 0,
                                 price: 25.0,
