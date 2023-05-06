@@ -29,6 +29,11 @@ const routes = [
         name: "store",
         component: () => import('../views/store/Store.vue')   
     },
+    {
+        path: '/createOrder',
+        name: "createOrdere",
+        component: () => import('../views/createOrder/CreateOrder.vue')   
+    },
 ]
 export const router = createRouter({
   history: createWebHashHistory(),

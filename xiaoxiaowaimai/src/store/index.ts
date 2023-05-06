@@ -20,7 +20,14 @@ const store =createStore({
         }
     },
     getters:{
-        
+        priceTotal(state){
+            let total:number=0;
+            state.cart.goods.forEach(v=>{
+                if((v as any).isSelected)
+                    total+=(v as any).count*(v as any).price;
+            })
+            return total;
+        }
     },
     mutations:{
         addCart(state){
