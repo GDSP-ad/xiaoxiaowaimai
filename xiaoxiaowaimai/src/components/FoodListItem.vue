@@ -4,8 +4,8 @@
             <img :src="props.data.img" alt="">
             <div class="text">
                 <div class="title">{{ props.data.name }}</div>
-                <van-stepper min="0" v-if="isSelect" v-model="count"></van-stepper>
-                <van-icon name="add-o" @click="isSelect = true" v-if="!isSelect"></van-icon>
+                <van-stepper min="0" v-if="isSelected" v-model="count"></van-stepper>
+                <van-icon name="add-o" @click="isSelected = true" v-if="!isSelected"></van-icon>
             </div>
         </div>
 
@@ -21,30 +21,41 @@ const store = useStore();
 const props = defineProps(['data'])
 
 
-let isSelect = ref(false);
+let isSelected = ref(false);
 let count = ref(0);
+
 
 watch(count, (newCount, oldCount) => {
     if (newCount === 0) {
-        isSelect.value = false;
+        isSelected.value = false;
         store.commit('reduceGoods',props.data.id)
     }
-    if (isSelect.value) {
+    if (isSelected.value) {
         store.commit('addGoods', {
             id: props.data.id,
             name: props.data.name,
             img: props.data.img,
-            count: count.value,
-            price: props.data.price
+            count: newCount,
+            price: props.data.price,
+            isSelected:true
         })
     }
-    console.log(store.state.cart.goods)
-})
+});
 
-watch(isSelect, (newValue, oldValue) => {
-    if(isSelect.value)
+watch(isSelected, (newValue, oldValue) => {
+    if(isSelected.value&&count.value===0)
         count.value=1;
-})
+});
+
+(function init(){
+    for(let i=0;i<store.state.cart.goods.length;i++){
+        if(props.data.id==store.state.cart.goods[i].id){
+            count.value=store.state.cart.goods[i].count;
+            isSelected.value=true;
+            return;
+        }
+    }
+})();
 
 
 </script>

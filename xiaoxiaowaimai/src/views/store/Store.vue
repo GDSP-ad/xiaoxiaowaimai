@@ -7,7 +7,7 @@
                 <div class="sort"></div>
                 <div class="name">{{ data.title }}<img :src="data.img" alt="" class="store-img"></div>
                 <van-tabs v-model:active="active" color="#ffc400">
-                    <van-tab v-for="(item, index) in data.storeData" :key="index" :title="item.name">
+                    <van-tab v-for="(item, index) in data.storeData" :key="index" :title="item.name" >
                         <food-list :index="index" :foodData="item.data"></food-list>
                     </van-tab>
                 </van-tabs>
@@ -17,7 +17,7 @@
             <van-action-bar>
                 <van-action-bar-icon icon="chat-o" text="客服"  />
                 <van-action-bar-icon icon="cart-o" text="购物车" :badge="store.state.cart.goods.length" @click="router.push('/cart')"/>
-                <van-action-bar-button type="warning" text="加入购物车" @click="addCart"/>
+                <!-- <van-action-bar-button type="warning" text="加入购物车" @click="addCart"/> -->
                 <van-action-bar-button type="danger" text="立即购买" @click="buyNow"/>
             </van-action-bar>
         </div>
@@ -72,7 +72,7 @@ const data = reactive({
                             {
                                 img: "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fwww.cfcy168.com%2FUploadFiles%2F2020%2F2%2F15904074889874037.jpg&refer=http%3A%2F%2Fwww.cfcy168.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1645421933&t=66b58fbba9dce6f6b397e38820de24dc",
                                 name: "隆江猪脚饭",
-                                num: 0,
+                                count: 0,
                                 price: 25.0,
                                 id: 0,//菜品id
                                 add: true,
@@ -80,9 +80,25 @@ const data = reactive({
                             {
                                 img: "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fwww.cfcy168.com%2FUploadFiles%2F2020%2F2%2F15904074889874037.jpg&refer=http%3A%2F%2Fwww.cfcy168.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1645421933&t=66b58fbba9dce6f6b397e38820de24dc",
                                 name: "隆江猪脚饭",
-                                num: 0,
-                                price: 25.0,
+                                count: 0,
+                                price: 26.0,
                                 id: 1,
+                                add: true,
+                            },
+                            {
+                                img: "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fwww.cfcy168.com%2FUploadFiles%2F2020%2F2%2F15904074889874037.jpg&refer=http%3A%2F%2Fwww.cfcy168.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1645421933&t=66b58fbba9dce6f6b397e38820de24dc",
+                                name: "隆江猪脚饭",
+                                count: 0,
+                                price: 26.0,
+                                id: 2,
+                                add: true,
+                            },
+                            {
+                                img: "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fwww.cfcy168.com%2FUploadFiles%2F2020%2F2%2F15904074889874037.jpg&refer=http%3A%2F%2Fwww.cfcy168.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1645421933&t=66b58fbba9dce6f6b397e38820de24dc",
+                                name: "隆江猪脚饭",
+                                count: 0,
+                                price: 26.0,
+                                id: 3,
                                 add: true,
                             },
                         ],
@@ -93,16 +109,16 @@ const data = reactive({
                             {
                                 img: "https://img1.baidu.com/it/u=1599947592,1695977044&fm=253&fmt=auto&app=138&f=JPEG?w=640&h=440",
                                 name: "无骨酸菜鱼+肥牛双拼",
-                                num: 0,
-                                price: 25.0,
+                                count: 2,
+                                price: 27.0,
                                 id: 5,
                                 add: true,
                             },
                             {
                                 img: "https://img1.baidu.com/it/u=1599947592,1695977044&fm=253&fmt=auto&app=138&f=JPEG?w=640&h=440",
                                 name: "香辣水煮鱼+肥牛双拼",
-                                num: 0,
-                                price: 25.0,
+                                count: 0,
+                                price: 28.0,
                                 id: 6,
                                 add: true,
                             },

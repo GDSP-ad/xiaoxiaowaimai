@@ -1,8 +1,8 @@
 <template>
     <div class="food-list">
-        <van-tree-select v-model:main-active-index="data.activeIndex" height="55vw" :items="data.items">
+        <van-tree-select v-model:main-active-index="data.activeIndex" height="300px" :items="data.items" >
             <template #content>
-                <div class="item-bg" v-for="(item,index) in props.foodData.items[data.activeIndex].children" :key="index">
+                <div class="item-bg" v-for="(item,index) in props.foodData.items[data.activeIndex].children" :key="(item as any).id">
                     <food-list-item :data="item"></food-list-item>
                 </div>
                 
@@ -16,7 +16,6 @@ import { reactive } from 'vue';
 import FoodListItem from '../../../components/FoodListItem.vue'
 
 const props = defineProps(['index', 'foodData'])
-
 
 const items: any = reactive([]);
 

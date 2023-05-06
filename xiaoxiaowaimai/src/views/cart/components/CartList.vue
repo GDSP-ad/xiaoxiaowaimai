@@ -2,25 +2,35 @@
     <div class="cartList">
         <div class="content">
             <van-checkbox-group v-model="checked" ref="checkboxGroup">
-                <van-checkbox name="a">复选框 a</van-checkbox>
-                <van-checkbox name="b">复选框 b</van-checkbox>
-                <van-checkbox name="c">复选框 c</van-checkbox>
+                <van-checkbox  v-for="(item,index) in store.state.cart.goods" :name="index" :key="index" @click="store.commit('changeGoodsIsSelected',(item as any).id)">
+                    <food-list-item :data="item" @click.stop=""></food-list-item>
+                </van-checkbox>
             </van-checkbox-group>
-
-            <van-button type="primary" @click="checkAll">全选</van-button>
-            <van-button type="primary" @click="toggleAll">反选</van-button>
         </div>
     </div>
 </template>
 
 <script lang="ts" setup>
-import { ref, reactive } from 'vue';
+import { ref, reactive, watch } from 'vue';
 import { useStore } from 'vuex';
 import FoodListItem from '../../../components/FoodListItem.vue';
 
-const checked = ref([]);
+const checked= ref([]);
 const checkboxGroup = ref({});
 const store = useStore();
+
+
+(function init(){
+    for(let i=0;i<store.state.cart.goods.length;i++)
+    (checked.value as any).push(i);
+})();
+
+watch(checked,(newValue,oldValue)=>{
+    console.log(store.state.cart.goods);
+})
+
+
+
 </script>
 
 <style lang="less" scoped>

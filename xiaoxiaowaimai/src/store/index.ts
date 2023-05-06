@@ -4,7 +4,7 @@ const store =createStore({
     state(){
         return {
             cart:{
-                isAdd:false,
+                isAdd:true,
                 storeId:'',
                 goods:[
                     // {
@@ -13,10 +13,14 @@ const store =createStore({
                     //     img:'',
                     //     count:1,
                     //     price:10
-                    // }
+                    //     isSelected:true
+                    //  }     
                 ]
             }
         }
+    },
+    getters:{
+        
     },
     mutations:{
         addCart(state){
@@ -45,6 +49,14 @@ const store =createStore({
                     return true;
                 }
             })
+        },
+        changeGoodsIsSelected(state,id){
+            for(let i=0;i<state.cart.goods.length;i++){
+                if(id==(state.cart.goods[i] as any).id){
+                    (state.cart.goods[i] as any).isSelected=!(state.cart.goods[i] as any).isSelected;
+                    return;
+                } 
+            }
         }
     }
 })

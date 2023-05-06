@@ -1,7 +1,7 @@
 <template>
     <div class="cart">
         <Header title="购物车"></Header>
-        <CartList v-if="store.state.cart.isAdd"></CartList>
+        <CartList v-if="store.state.cart.goods.length"></CartList>
         <Empty v-else></Empty>
         <Footer></Footer>
     </div>
