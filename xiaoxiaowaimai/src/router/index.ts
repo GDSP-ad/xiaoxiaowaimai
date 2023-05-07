@@ -34,6 +34,16 @@ const routes = [
         name: "createOrdere",
         component: () => import('../views/createOrder/CreateOrder.vue')   
     },
+    {
+        path: '/login',
+        name: "login",
+        component: () => import('../views/login/Login.vue')   
+    },
+    {
+        path: '/random',
+        name: "random",
+        component: () => import('../views/random/Random.vue')   
+    },
 ]
 export const router = createRouter({
   history: createWebHashHistory(),

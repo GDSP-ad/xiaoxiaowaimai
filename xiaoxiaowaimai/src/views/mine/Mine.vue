@@ -19,6 +19,8 @@ import Footer from '../../components/Footer.vue';
     justify-content: space-between;
 
     .content {
+        background-color: red;
+        width: 375px;
         flex: 1;
         overflow-y: auto;
     }
