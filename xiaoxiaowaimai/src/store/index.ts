@@ -16,6 +16,12 @@ const store =createStore({
                     //     isSelected:true
                     //  }     
                 ]
+            },
+            order:{
+                price:0,
+                goods:[
+
+                ]
             }
         }
     },
@@ -64,6 +70,13 @@ const store =createStore({
                     return;
                 } 
             }
+        },
+        addOrder(state,total){
+            state.order.price=total;
+            state.cart.goods.forEach(v=>{
+                if((v as any).isSelected)
+                    state.order.goods.push(v);
+            })
         }
     }
 })

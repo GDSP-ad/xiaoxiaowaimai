@@ -22,8 +22,11 @@ const router=useRouter();
 function onSubmit(){
     if(store.getters.priceTotal===0)
         showFailToast('请选择商品');
-    else
+    else{
+        store.commit('addOrder',store.getters.priceTotal);
         router.push('/createOrder')
+    }
+        
 }
 
 </script>
