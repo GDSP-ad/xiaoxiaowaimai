@@ -14,7 +14,7 @@
                 <span>商品金额</span>
                 <span>￥{{ store.state.order.price }}</span>
             </div>
-            <van-button type="primary" class="pay-btn" block  color="#ffc400" >生成订单</van-button>
+            <van-button type="primary" class="pay-btn" block color="#ffc400" @click="onSubmit">生成订单</van-button>
         </div>
     </div>
 </template>
@@ -23,14 +23,36 @@
 import Header from '../../components/Header.vue';
 import { ref } from 'vue'
 import { useStore } from 'vuex';
+import { useRouter } from 'vue-router';
+import { showToast } from 'vant';
 
 const store = useStore();
+const router = useRouter();
 
-const tel = ref('1231232131');
+const tel = ref('12312313');
 const name = ref('张三')
 function onEdit() {
-
+    router.push('/address');
 }
+
+function onSubmit() {
+    showToast({message:'购买成功',duration:300});
+    setTimeout(() => {
+        router.push('/order');
+    }, 500);
+    
+}
+
+(function init() {
+    for (let i = 0; i < store.state.userInfo.addressList.length; i++) {
+        if (store.state.userInfo.addressList[i].id==store.state.userInfo.chosenAddressId) {
+            tel.value = store.state.userInfo.addressList[i].tel;
+            name.value = store.state.userInfo.addressList[i].name;
+            break;
+        }
+    }
+})()
+
 </script>
 
 

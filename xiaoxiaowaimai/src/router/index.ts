@@ -44,6 +44,26 @@ const routes = [
         name: "random",
         component: () => import('../views/random/Random.vue')   
     },
+    {
+        path: '/address',
+        name: "address",
+        component: () => import('../views/address/Address.vue')   
+    },
+    {
+        path: '/customerService',
+        name: "customerService",
+        component: () => import('../views/customerService/CustomerService.vue')   
+    },
+    {
+        path: '/editAddress',
+        name: "editAddress",
+        component: () => import('../views/editAddress/editAddress.vue')   
+    },
+    {
+        path: '/location',
+        name: "location",
+        component: () => import('../views/location/Location.vue')   
+    },
 ]
 export const router = createRouter({
   history: createWebHashHistory(),

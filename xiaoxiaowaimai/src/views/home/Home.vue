@@ -5,7 +5,7 @@
                 <div class="text">
                     小小外卖
                 </div>
-                <div class="location">
+                <div class="location" @click="router.push('/location')">
                     <van-icon name="location-o"></van-icon>
                     <span>位置</span>
                     <van-icon name="arrow"></van-icon>
@@ -59,6 +59,9 @@
 import { reactive, ref } from 'vue';
 import Footer from '../../components/Footer.vue';
 import NavList from './components/NavList.vue'
+import {useRouter} from 'vue-router';
+
+const router=useRouter();
 
 const active = ref(0)
 const data = reactive({
