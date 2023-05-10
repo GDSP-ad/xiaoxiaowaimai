@@ -1,121 +1,67 @@
 <template>
-    <div class="box" :style="active_1">
-      <div class="header">
-        <h1>小外<br>小卖</h1>
+  <div class="login">
+    <Header title="登录"></Header>
+    <div class="logo">小小外卖</div>
+    <van-form @submit="onSubmit">
+      <van-cell-group inset>
+        <van-field v-model="username" name="用户名" label="用户名" placeholder="用户名"
+          :rules="[{ required: true, message: '请填写用户名' }]" />
+        <van-field v-model="password" type="password" name="密码" label="密码" placeholder="密码"
+          :rules="[{ required: true, message: '请填写密码' }]" />
+      </van-cell-group>
+      <div style="margin: 16px;">
+        <van-button round block type="primary" color="#ffc400" native-type="submit">
+          登录
+        </van-button>
       </div>
-      <div class="container">
-        <form @submit.prevent="login">
-          <div>
-            <label for="">昵&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称：</label>
-            <input type="text" v-model="username">
-          </div>
-          <div>
-            <label for="">密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码：</label>
-            <input type="password" v-model="password">
-          </div>
-          <button>登录</button>
-        </form>
-        <button @click="goReg">去注册</button>
+      <div style="margin: 16px;">
+        <van-button round block type="default"  @click="router.push('/register')">
+          注册
+        </van-button>
       </div>
-    </div>
-    <div class="big" :style="active_2">
-      <div class="header">
-        <h1>小外<br>小卖</h1>
-      </div>
-      <div class="container">
-        <form @submit.prevent="register">
-          <div>
-            <label for="">昵&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称：</label>
-            <input name="regUserName" type="text" v-model="regusername">
-          </div>
-          <div>
-            <label for="">密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码：</label>
-            <input name="regPwd" type="password" v-model="regpwd">
-          </div>
-          <div>
-            <label for="">确认密码：</label>
-            <input name="reRegPwd" type="password" v-model="reregpwd">
-          </div>
-          <button>注册</button>
-        </form>
-        <button @click="goLogin">去登录</button>
-      </div>
-    </div>
-  </template>
-  <script>
-  export default {
-    data() {
-      return {
-        username: "",
-        password: "",
-        regusername: '',
-        regpwd: '',
-        reregpwd: '',
-        active_1: {
-  
-        },
-        active_2: {
-          display: "none"
-        }
-      }
-    },
-    methods: {
-      register() {
-        if (this.regusername == "admin" && this.regpwd == this.reregpwd && this.regpwd == "123") {
-          alert("注册成功");
-        } else {
-          alert("昵称或密码错误");
-        }
-      },
-      goLogin() {
-        this.active_1 = {}
-        this.active_2 = { display: "none" };
-  
-      },
-      login() {
-        if (this.username == "admin" && this.password == "123") {
-          this.$router.push("/index.vue")
-        } else {
-          alert("昵称或密码错误");
-        }
-      },
-      goReg() {
-        this.active_1 = { display: "none" };
-        this.active_2 = {};
-      }
-    }
+    </van-form>
+  </div>
+</template>
+
+<script lang="ts" setup>
+import Header from '../../components/Header.vue';
+import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+import { showToast } from 'vant';
+
+const router=useRouter()
+
+const username=ref('');
+const password=ref('');
+
+const onSubmit=(v:any)=>{   
+  if(username.value=='123'&&password.value=='123'){
+    showToast({message:'登录成功',duration:300});
+    //跳转
+  }else{
+    showToast({message:'账号或密码错误',duration:1000});
   }
-  </script>
-  <style>
-  .header {
-    width: 300px;
-    height: 300px;
-    border-radius: 20px;
-    background-color: rgb(249, 205, 8);
-    color: white;
-    font-size: 45px;
+
+}
+
+
+</script>
+
+<style scoped lang="less">
+.login {
+  .logo {
+    width: 250px;
+    height: 250px;
+    margin: 30px auto;
+    border-radius: 40px;
+    font-size: 95px;
     text-align: center;
+    line-height: 125px;
+    background-color: #ffc400;
   }
-  .container {
-    margin-top: 40px;
-    margin-left: 25px;
+
+  .register {
+    margin-top: 20px;
   }
-  button{
-  width:200px;
-  height: 30px;
-  margin-top: 10px;
-  margin-left: 40px;
-  background-color:  rgb(249, 205, 8);
-  border-radius: 5px;
-  border: 0px;
-  }
-  /* .container button:nth-child(2){
-  width:200px;
-  height: 30px;
-  margin-top: 10px;
-  margin-left: 40px;
-  background-color:  rgb(249, 205, 8);
-  border-radius: 5px;
-  border: 0px;
-  } */
-  </style>
+}
+</style>

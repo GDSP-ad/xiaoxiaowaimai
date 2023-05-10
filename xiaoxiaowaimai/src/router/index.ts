@@ -40,6 +40,11 @@ const routes = [
         component: () => import('../views/login/Login.vue')   
     },
     {
+        path: '/register',
+        name: "register",
+        component: () => import('../views/register/Register.vue')   
+    },
+    {
         path: '/random',
         name: "random",
         component: () => import('../views/random/Random.vue')   
