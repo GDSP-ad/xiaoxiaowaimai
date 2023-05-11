@@ -12,7 +12,7 @@
             </van-cell-group>
             <div style="margin: 16px;">
                 <van-button round block type="primary" color="#ffc400" native-type="submit">
-                    登录
+                    注册
                 </van-button>
             </div>
         </van-form>

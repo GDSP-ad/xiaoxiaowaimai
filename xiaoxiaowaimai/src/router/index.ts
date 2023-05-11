@@ -2,8 +2,7 @@ import { createRouter, createWebHashHistory } from "vue-router"
 
 const routes = [
     {
-        path: '/',
-        component: () => import('../views/home/Home.vue')             
+         path: '/', redirect: '/home'           
     },
     {
         path: '/home',
@@ -69,10 +68,22 @@ const routes = [
         name: "location",
         component: () => import('../views/location/Location.vue')   
     },
+    {
+        path: '/userEdit',
+        name: "userEdit",
+        component: () => import('../views/userEdit/UserEdit.vue')   
+    },
 ]
-export const router = createRouter({
+const router = createRouter({
   history: createWebHashHistory(),
   routes: routes
 })
+
+router.beforeEach((to,from)=>{
+    if((to.name=='mine'||to.name=='order'||to.name=='cart')&&!localStorage.getItem('isLogin'))
+        return {name:'login'}
+})
+
+
 
 export default router

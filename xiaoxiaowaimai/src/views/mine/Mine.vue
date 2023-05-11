@@ -12,15 +12,15 @@
                 </div>
             </div>
             <ul class="user-list">
-                <li class="van-hairline--bottom" @click="router.push('./order')">
+                <li class="van-hairline--bottom" @click="router.push('/order')">
                     <span>我的订单</span>
                     <van-icon name="arrow" />
                 </li>
-                <li class="van-hairline--bottom" @click="router.push('./address')">
+                <li class="van-hairline--bottom" @click="router.push('/address')">
                     <span>地址管理</span>
                     <van-icon name="arrow" />
                 </li>
-                <li class="van-hairline--bottom" @click="">
+                <li class="van-hairline--bottom" @click="router.push('/userEdit')">
                     <span>账号管理</span>
                     <van-icon name="arrow" />
                 </li>

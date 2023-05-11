@@ -24,7 +24,7 @@ const store = createStore({
                 ]
             },
             userInfo: {
-                account: '232131',
+                account: '',
                 name: '张三',
                 describe:'你好呀',
                 addressList: [
@@ -33,7 +33,7 @@ const store = createStore({
                         isDefault: true,
                         province: '安徽省',
                         city: '芜湖市',
-                        county: '鸠江区',
+                        county: '鸠江区',    
                         addressDetail: '江坝',//详细地址
                         areaCode: '001100',//地区编码
                         tel: '11120202020',
