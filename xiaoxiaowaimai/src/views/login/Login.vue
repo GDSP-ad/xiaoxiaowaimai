@@ -15,7 +15,7 @@
         </van-button>
       </div>
       <div style="margin: 16px;">
-        <van-button round block type="default"  @click="router.push('/register')">
+        <van-button round block type="default" @click="router.push('/register')">
           注册
         </van-button>
       </div>
@@ -27,20 +27,52 @@
 import Header from '../../components/Header.vue';
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
+import { useStore } from 'vuex';
 import { showToast } from 'vant';
+import axios from 'axios'
+const router = useRouter()
+const store = useStore();
 
-const router=useRouter()
+const username = ref('');
+const password = ref('');
 
-const username=ref('');
-const password=ref('');
+const onSubmit = (v: any) => {
 
-const onSubmit=(v:any)=>{   
-  if(username.value=='123'&&password.value=='123'){
-    showToast({message:'登录成功',duration:300});
-    //跳转
-  }else{
-    showToast({message:'账号或密码错误',duration:1000});
-  }
+  //跳转
+  axios.post('/api/login.php', {
+    username: username.value,
+    password: password.value
+  }).then(res => {
+    if (res.data.code === 0)
+      showToast({ message: '账号不存在', duration: 1000 });
+    else if (res.data.code === 2) {
+      showToast({ message: '账号或密码错误', duration: 1000 });
+    } else {
+      showToast({ message: '登录成功', duration: 1000 });
+      axios.post('/api/user.php', {
+        username: username.value
+      }).then(res => {
+        if(res.data.code===0){
+          console.log(res.data.msg);
+        }else
+          store.commit('addUserInfo', res.data.data);
+
+        axios.post('/api/address.php', {
+          username: username.value
+        }).then(res => {
+          if (res.data.code === 0) {
+            console.log(res.data.msg);
+          } else {
+            for (const i of res.data.data)
+              store.commit('addAddress', i);
+          }
+        })
+      })
+    router.push('/home')
+    }
+  })
+
+
 
 }
 

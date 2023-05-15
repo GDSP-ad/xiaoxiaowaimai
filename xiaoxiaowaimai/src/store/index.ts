@@ -24,9 +24,9 @@ const store = createStore({
                 ]
             },
             userInfo: {
-                account: '',
-                name: '张三',
-                describe:'你好呀',
+                username: '',
+                nickname: '张三',
+                sign:'你好呀',
                 addressList: [
                     {
                         id: 0,
@@ -63,6 +63,14 @@ const store = createStore({
                     total += (v as any).count * (v as any).price;
             })
             return total;
+        },
+        newAddressId(state){
+            let id=0;
+            state.userInfo.addressList.forEach(v=>{
+                if(v.id>id)
+                    id=v.id;
+            })
+            return id+1;
         }
     },
     mutations: {
@@ -148,6 +156,17 @@ const store = createStore({
         },
         changeChosenAddressId(state,id){
             state.userInfo.chosenAddressId=id;
+        },
+        addUserInfo(state,userInfo){
+            state.userInfo.username=userInfo.username;
+            state.userInfo.nickname=userInfo.nickname;
+            state.userInfo.sign=userInfo.sign;
+        },
+        logout(state){
+            state.userInfo.username='';
+            state.userInfo.nickname='';
+            state.userInfo.addressList=[];
+            state.userInfo.sign='';
         }
     },
     plugins: [createPersistedState()]

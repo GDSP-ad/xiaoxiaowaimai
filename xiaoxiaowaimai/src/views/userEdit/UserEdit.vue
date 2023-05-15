@@ -19,7 +19,7 @@
                     </van-button>
                 </div>
                 <div style="margin: 16px;">
-                    <van-button round block type="default" @click="logout">
+                    <van-button round block type="default" @click="logout" class="logout">
                         退出登录
                     </van-button>
                 </div>
@@ -31,6 +31,14 @@
 <script lang="ts" setup>
 import Header from '../../components/Header.vue';
 import { ref } from 'vue';
+import {useRouter} from 'vue-router';
+import { useStore } from 'vuex';
+import axios from 'axios';
+import { showToast } from 'vant';
+
+
+const router=useRouter();
+const store=useStore();
 
 const username=ref('');
 const password=ref('');
@@ -38,11 +46,28 @@ const nickname=ref('');
 const sign=ref('');
 
 const onSubmit=(v:any)=>{
-
+    axios.post('/api/user_update.php',{oldUsername:store.state.userInfo.username,...v}).then(res=>{
+        if(res.data.code===1){
+            showToast({message:'修改成功',duration:1000});
+            store.commit('addUserInfo',v);
+        }else{
+            showToast({message:'用户名已存在',duration:1000});
+        }
+    })
 }
 
 const logout=()=>{
-    
+    store.commit('logout');
+    router.push('/login');
 }
 
 </script>
+
+
+<style lang="less" scoped>
+
+.logout {
+    color:red;
+}
+
+</style>

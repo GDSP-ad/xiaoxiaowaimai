@@ -7,7 +7,7 @@
                 <div class="sort"></div>
                 <div class="name">{{ data.title }}<img :src="data.img" alt="" class="store-img"></div>
                 <van-tabs v-model:active="active" color="#ffc400">
-                    <van-tab v-for="(item, index) in data.storeData" :key="index" :title="item.name" >
+                    <van-tab v-for="(item, index) in data.storeData" :key="index" :title="item.name">
                         <food-list :index="index" :foodData="item.data"></food-list>
                     </van-tab>
                 </van-tabs>
@@ -15,10 +15,11 @@
         </div>
         <div>
             <van-action-bar>
-                <van-action-bar-icon icon="chat-o" text="客服"  @click="router.push('/customerService')"/>
-                <van-action-bar-icon icon="cart-o" text="购物车" :badge="store.state.cart.goods.length" @click="router.push('/cart')"/>
+                <van-action-bar-icon icon="chat-o" text="客服" @click="" />
+                <van-action-bar-icon icon="cart-o" text="购物车" :badge="store.state.cart.goods.length"
+                    @click="router.push('/cart')" />
                 <!-- <van-action-bar-button type="warning" text="加入购物车" @click="addCart"/> -->
-                <van-action-bar-button type="danger" text="立即购买" @click="buyNow"/>
+                <van-action-bar-button type="danger" text="立即购买" @click="buyNow" />
             </van-action-bar>
         </div>
     </div>
@@ -27,33 +28,37 @@
 <script lang="ts" setup>
 import { reactive, ref } from 'vue';
 import { useStore } from 'vuex';
-import { useRouter } from 'vue-router';
+import { useRouter, useRoute } from 'vue-router';
 import { showNotify } from 'vant';
 import { showToast } from 'vant';
 import Header from '../../components/Header.vue';
 import FoodList from './components/FoodList.vue'
+import axios from 'axios';
 
-function addCart(){
-    if(store.state.cart.goods.length===0){
+const store = useStore();
+const router = useRouter();
+const route = useRoute();
+
+function addCart() {
+    if (store.state.cart.goods.length === 0) {
         showToast('请选择商品');
-    }else{
+    } else {
         store.commit('addCart');
         showToast('添加成功');
     }
 }
 
 
-function buyNow(){
-    if(store.state.cart.goods.length===0){
+function buyNow() {
+    if (store.state.cart.goods.length === 0) {
         showToast('请选择商品');
-    }else{
+    } else {
         store.commit('addCart');
         router.push('/cart')
     }
 }
 
-const store=useStore();
-const router=useRouter();
+
 
 
 const data = reactive({
@@ -61,7 +66,6 @@ const data = reactive({
     img: 'https://img1.baidu.com/it/u=1599947592,1695977044&fm=253&fmt=auto&app=138&f=JPEG?w=640&h=440',
     storeData: [
         {
-            id:"001",//商店id
             name: "点菜",
             data: {
                 content: "点菜",
@@ -72,10 +76,8 @@ const data = reactive({
                             {
                                 img: "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fwww.cfcy168.com%2FUploadFiles%2F2020%2F2%2F15904074889874037.jpg&refer=http%3A%2F%2Fwww.cfcy168.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1645421933&t=66b58fbba9dce6f6b397e38820de24dc",
                                 name: "隆江猪脚饭",
-                                count: 0,
                                 price: 25.0,
                                 id: 0,//菜品id
-                                add: true,
                             },
                             {
                                 img: "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fwww.cfcy168.com%2FUploadFiles%2F2020%2F2%2F15904074889874037.jpg&refer=http%3A%2F%2Fwww.cfcy168.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1645421933&t=66b58fbba9dce6f6b397e38820de24dc",
@@ -142,9 +144,49 @@ const data = reactive({
     ],
 
 })
-store.commit('addStoreId',data.storeData[0].id);
+
 
 let active = ref(0);
+
+(function init() {
+    axios.post('/api/goods.php', { storeId: store.state.cart.storeId }).then(res => {
+        const goods:any[] = res.data.data;
+        console.log('storeId: '+store.state.cart.storeId);
+        console.log(res.data);
+        let items:any[] = [];
+        goods.forEach(v => {
+            if (items.length !== 0) {
+                for (let i = 0; i < items.length; i++) {
+                    if (items[i].text === v.tab) {
+                        items[i].children.push({
+                            id: v.id,
+                            img: v.img,
+                            price: v.price,
+                            name: v.name
+                        })
+                        return;
+                    }
+                }
+            }
+            items.push({
+                text: v.tab,
+                children: [
+                    {
+                        id: v.id,
+                        img: v.img,
+                        price: v.price,
+                        name: v.name
+                    }
+                ]
+            })
+
+        })
+        data.storeData[0].data.items = items;
+    })
+
+
+
+})();
 </script>
 
 <style lang="less" scoped>

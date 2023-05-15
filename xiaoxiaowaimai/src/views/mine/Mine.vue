@@ -6,8 +6,8 @@
                 <div class="info">
                     <img src="../../assets/header.png" />
                     <div class="user-desc">
-                        <span>昵称：{{ store.state.userInfo.name }}</span>
-                        <span class="name">个性签名：{{  store.state.userInfo.describe }}</span>
+                        <span>昵称：{{ store.state.userInfo.nickname }}</span>
+                        <span class="name">个性签名：{{  store.state.userInfo.sign }}</span>
                     </div>
                 </div>
             </div>

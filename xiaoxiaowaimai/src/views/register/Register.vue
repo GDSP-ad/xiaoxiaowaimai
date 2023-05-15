@@ -22,13 +22,28 @@
 <script lang="ts" setup>
 import Header from '../../components/Header.vue'
 import { ref } from 'vue';
-
+import { showToast } from 'vant';
+import axios from 'axios';
+import { useRouter } from 'vue-router';
 const username=ref('');
 const password=ref('');
 const passwordAgain=ref('');
 
+const router=useRouter()
+
 const onSubmit=(v:any)=>{
-    console.log(v);
+    if(password.value!==passwordAgain.value){
+        showToast({message:'两次输入的密码不一致',duration:1000});
+    }else{
+        axios.post('/api/register.php',v).then(res=>{
+            if(res.data.code===0)
+                showToast({message:'账号已存在！',duration:1000});
+            else{
+                showToast({message:'注册成功',duration:300});
+                router.push('/login');
+            }
+        })
+    }
 }
 
 </script>
