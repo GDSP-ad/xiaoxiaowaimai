@@ -70,62 +70,62 @@ const data = reactive({
             data: {
                 content: "点菜",
                 items: [
-                    {
-                        text: "热销套餐",//所属分类
-                        children: [
-                            {
-                                img: "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fwww.cfcy168.com%2FUploadFiles%2F2020%2F2%2F15904074889874037.jpg&refer=http%3A%2F%2Fwww.cfcy168.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1645421933&t=66b58fbba9dce6f6b397e38820de24dc",
-                                name: "隆江猪脚饭",
-                                price: 25.0,
-                                id: 0,//菜品id
-                            },
-                            {
-                                img: "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fwww.cfcy168.com%2FUploadFiles%2F2020%2F2%2F15904074889874037.jpg&refer=http%3A%2F%2Fwww.cfcy168.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1645421933&t=66b58fbba9dce6f6b397e38820de24dc",
-                                name: "隆江猪脚饭",
-                                count: 0,
-                                price: 26.0,
-                                id: 1,
-                                add: true,
-                            },
-                            {
-                                img: "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fwww.cfcy168.com%2FUploadFiles%2F2020%2F2%2F15904074889874037.jpg&refer=http%3A%2F%2Fwww.cfcy168.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1645421933&t=66b58fbba9dce6f6b397e38820de24dc",
-                                name: "隆江猪脚饭",
-                                count: 0,
-                                price: 26.0,
-                                id: 2,
-                                add: true,
-                            },
-                            {
-                                img: "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fwww.cfcy168.com%2FUploadFiles%2F2020%2F2%2F15904074889874037.jpg&refer=http%3A%2F%2Fwww.cfcy168.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1645421933&t=66b58fbba9dce6f6b397e38820de24dc",
-                                name: "隆江猪脚饭",
-                                count: 0,
-                                price: 26.0,
-                                id: 3,
-                                add: true,
-                            },
-                        ],
-                    },
-                    {
-                        text: "超级折扣",
-                        children: [
-                            {
-                                img: "https://img1.baidu.com/it/u=1599947592,1695977044&fm=253&fmt=auto&app=138&f=JPEG?w=640&h=440",
-                                name: "无骨酸菜鱼+肥牛双拼",
-                                count: 2,
-                                price: 27.0,
-                                id: 5,
-                                add: true,
-                            },
-                            {
-                                img: "https://img1.baidu.com/it/u=1599947592,1695977044&fm=253&fmt=auto&app=138&f=JPEG?w=640&h=440",
-                                name: "香辣水煮鱼+肥牛双拼",
-                                count: 0,
-                                price: 28.0,
-                                id: 6,
-                                add: true,
-                            },
-                        ],
-                    },
+                    // {
+                    //     text: "热销套餐",//所属分类
+                    //     children: [
+                    //         {
+                    //             img: "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fwww.cfcy168.com%2FUploadFiles%2F2020%2F2%2F15904074889874037.jpg&refer=http%3A%2F%2Fwww.cfcy168.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1645421933&t=66b58fbba9dce6f6b397e38820de24dc",
+                    //             name: "隆江猪脚饭",
+                    //             price: 25.0,
+                    //             id: 0,//菜品id
+                    //         },
+                    //         {
+                    //             img: "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fwww.cfcy168.com%2FUploadFiles%2F2020%2F2%2F15904074889874037.jpg&refer=http%3A%2F%2Fwww.cfcy168.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1645421933&t=66b58fbba9dce6f6b397e38820de24dc",
+                    //             name: "隆江猪脚饭",
+                    //             count: 0,
+                    //             price: 26.0,
+                    //             id: 1,
+                    //             add: true,
+                    //         },
+                    //         {
+                    //             img: "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fwww.cfcy168.com%2FUploadFiles%2F2020%2F2%2F15904074889874037.jpg&refer=http%3A%2F%2Fwww.cfcy168.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1645421933&t=66b58fbba9dce6f6b397e38820de24dc",
+                    //             name: "隆江猪脚饭",
+                    //             count: 0,
+                    //             price: 26.0,
+                    //             id: 2,
+                    //             add: true,
+                    //         },
+                    //         {
+                    //             img: "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fwww.cfcy168.com%2FUploadFiles%2F2020%2F2%2F15904074889874037.jpg&refer=http%3A%2F%2Fwww.cfcy168.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1645421933&t=66b58fbba9dce6f6b397e38820de24dc",
+                    //             name: "隆江猪脚饭",
+                    //             count: 0,
+                    //             price: 26.0,
+                    //             id: 3,
+                    //             add: true,
+                    //         },
+                    //     ],
+                    // },
+                    // {
+                    //     text: "超级折扣",
+                    //     children: [
+                    //         {
+                    //             img: "https://img1.baidu.com/it/u=1599947592,1695977044&fm=253&fmt=auto&app=138&f=JPEG?w=640&h=440",
+                    //             name: "无骨酸菜鱼+肥牛双拼",
+                    //             count: 2,
+                    //             price: 27.0,
+                    //             id: 5,
+                    //             add: true,
+                    //         },
+                    //         {
+                    //             img: "https://img1.baidu.com/it/u=1599947592,1695977044&fm=253&fmt=auto&app=138&f=JPEG?w=640&h=440",
+                    //             name: "香辣水煮鱼+肥牛双拼",
+                    //             count: 0,
+                    //             price: 28.0,
+                    //             id: 6,
+                    //             add: true,
+                    //         },
+                    //     ],
+                    // },
                 ],
             },
         },
@@ -151,8 +151,6 @@ let active = ref(0);
 (function init() {
     axios.post('/api/goods.php', { storeId: store.state.cart.storeId }).then(res => {
         const goods:any[] = res.data.data;
-        console.log('storeId: '+store.state.cart.storeId);
-        console.log(res.data);
         let items:any[] = [];
         goods.forEach(v => {
             if (items.length !== 0) {
@@ -181,7 +179,8 @@ let active = ref(0);
             })
 
         })
-        data.storeData[0].data.items = items;
+        data.storeData[0].data.items = items as any;
+        console.log(data);
     })
 
 
