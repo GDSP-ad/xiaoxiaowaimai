@@ -22,15 +22,15 @@ const editAddressInfo = ref();
 
 function onDelete() {
     if (id) {
-        axios.post('/api/address_delete.php',{username:store.state.userInfo.username,id}).then(res=>{
-            if(res.data.code==1){
-                showToast({message:'删除成功',duration:300});
-                store.commit('deleteAddress', parseInt(id as string));
-            }else{
-                showToast({message:'删除失败',duration:300});
+        axios.post('/api/address_delete.php', { username: store.state.userInfo.username, id }).then(res => {
+            if (res.data.code == 1) {
+                showToast({ message: '删除成功', duration: 300 });
+                store.commit('deleteAddress', id);
+            } else {
+                showToast({ message: '删除失败', duration: 300 });
             }
         })
-        
+
     }
     router.back();
 }
@@ -45,23 +45,23 @@ function onSave(val: any) {
             province: val.province,
             city: val.city,
             county: val.county,
-            addressDetail: val.addAddress,//详细地址
+            addressDetail: val.addressDetail,//详细地址
             areaCode: val.areaCode,//地区编码
             username: store.state.userInfo.username
         }
-        axios.post('/api/address_update.php', { ...data }).then(res => {
-            if (res.data.code==1){
-                showToast({message:'修改成功',duration:300});
+        axios.post('/api/address_update.php', data).then(res => {
+            if (res.data.code == 1) {
+                showToast({ message: '修改成功', duration: 300 });
                 store.commit('changeAddress', data)
                 router.back();
-            }else{
-                showToast({message:'修改失败',duration:300});
+            } else {
+                showToast({ message: '修改失败', duration: 300 });
             }
         })
-        
+
     } else {
         const data = {
-            id: store.getters.nweAddressId,
+            id: store.getters.newAddressId,
             name: val.name,
             tel: val.tel,
             isDefault: val.isDefault ? 1 : 0,
@@ -73,12 +73,11 @@ function onSave(val: any) {
             username: store.state.userInfo.username
         }
 
-        axios.post('/api/address_add.php', {
-            ...data
-        }).then(res => {
+        axios.post('/api/address_add.php', data).then(res => {
             if (res.data.code == 1) {
                 showToast({ message: '添加成功', duration: 300 });
-                store.commit('addAddress', data);
+
+                store.commit('addAddress',data);
                 router.back();
             } else {
                 showToast({ message: '添加失败', duration: 300 });
@@ -87,7 +86,7 @@ function onSave(val: any) {
         })
 
     }
-    
+
 }
 
 

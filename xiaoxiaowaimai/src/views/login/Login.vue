@@ -48,6 +48,7 @@ const onSubmit = (v: any) => {
     else if (res.data.code === 2) {
       showToast({ message: '账号或密码错误', duration: 1000 });
     } else {
+      localStorage.setItem('isLogin','1');
       showToast({ message: '登录成功', duration: 1000 });
       axios.post('/api/user.php', {
         username: username.value
@@ -63,6 +64,7 @@ const onSubmit = (v: any) => {
           if (res.data.code === 0) {
             console.log(res.data.msg);
           } else {
+            store.commit('clearAddressList');
             for (const i of res.data.data)
               store.commit('addAddress', i);
           }

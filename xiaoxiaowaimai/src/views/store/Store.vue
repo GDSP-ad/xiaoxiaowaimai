@@ -2,13 +2,13 @@
     <div class="store animate__animated animate__fadeInLeft">
         <Header title="店铺"></Header>
         <div class="content">
-            <div class="img"></div>
+            <div class="img" :style="{background:`url(${data.img}) no-repeat center/cover`}"></div>
             <div class="foodSort">
                 <div class="sort"></div>
                 <div class="name">{{ data.title }}<img :src="data.img" alt="" class="store-img"></div>
                 <van-tabs v-model:active="active" color="#ffc400">
                     <van-tab v-for="(item, index) in data.storeData" :key="index" :title="item.name">
-                        <food-list :index="index" :foodData="item.data"></food-list>
+                        <food-list :index="index" :foodData="item.data.items"></food-list>
                     </van-tab>
                 </van-tabs>
             </div>
@@ -26,7 +26,7 @@
 </template>
 
 <script lang="ts" setup>
-import { reactive, ref } from 'vue';
+import { reactive, ref, onBeforeMount } from 'vue';
 import { useStore } from 'vuex';
 import { useRouter, useRoute } from 'vue-router';
 import { showNotify } from 'vant';
@@ -149,9 +149,15 @@ const data = reactive({
 let active = ref(0);
 
 (function init() {
+
+    axios.post('api/store.php',{id:store.state.cart.storeId}).then(res=>{
+        data.img=res.data.data.img;
+        data.title=res.data.data.name;
+    })
+
     axios.post('/api/goods.php', { storeId: store.state.cart.storeId }).then(res => {
-        const goods:any[] = res.data.data;
-        let items:any[] = [];
+        const goods: any[] = res.data.data;
+        let items: any[] = [];
         goods.forEach(v => {
             if (items.length !== 0) {
                 for (let i = 0; i < items.length; i++) {
@@ -178,14 +184,16 @@ let active = ref(0);
                 ]
             })
 
-        })
-        data.storeData[0].data.items = items as any;
-        console.log(data);
+        });
+        (data.storeData[0].data.items as any) = items ;
     })
+})()
 
 
 
-})();
+
+
+
 </script>
 
 <style lang="less" scoped>
@@ -200,7 +208,6 @@ let active = ref(0);
         overflow-y: auto;
 
         .img {
-            background: url("../../assets/yuna.jpg") no-repeat center/cover;
             width: 100%;
             height: 150px;
         }

@@ -1,6 +1,8 @@
 <template>
   <div class="background-image">
+    
     <div class="head">
+      <Header title="转盘"></Header>
       <h1>这顿饭吃什么</h1>
 
       <el-button color="#FFAC06" :plain="true" @click="editPrizes" plain>编辑</el-button>
@@ -29,7 +31,7 @@
 </template>
   
 <script lang="js">
-
+import Header from '../../components/Header.vue'
 import { ElMessage } from 'element-plus'
 export default {
   data() {
@@ -127,6 +129,9 @@ export default {
       }
 
     }
+  },
+  components:{
+    Header
   }
 }
 </script>

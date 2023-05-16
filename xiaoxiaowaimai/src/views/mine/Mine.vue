@@ -24,6 +24,10 @@
                     <span>账号管理</span>
                     <van-icon name="arrow" />
                 </li>
+                <li class="van-hairline--bottom" @click="router.push('/random')">
+                    <span>做个决定</span>
+                    <van-icon name="arrow" />
+                </li>
             </ul>
         </div>
         <Footer></Footer>

@@ -66,9 +66,11 @@ const store = createStore({
         },
         newAddressId(state){
             let id=0;
+            if(state.userInfo.addressList.length===0)
+                return id;
             state.userInfo.addressList.forEach(v=>{
-                if(v.id>id)
-                    id=v.id;
+                if(parseInt(v.id as any)>id)
+                    id=parseInt(v.id as any);
             })
             return id+1;
         }
@@ -167,6 +169,9 @@ const store = createStore({
             state.userInfo.nickname='';
             state.userInfo.addressList=[];
             state.userInfo.sign='';
+        },
+        clearAddressList(state){
+            state.userInfo.addressList=[];
         }
     },
     plugins: [createPersistedState()]

@@ -15,14 +15,14 @@ const chosenAddressId=ref(store.state.userInfo.chosenAddressId);
 watch(chosenAddressId,(newValue,oldValue)=>{
     store.commit('changeChosenAddressId',newValue);
 })
-const list=store.state.userInfo.addressList;
+const list=ref(store.state.userInfo.addressList);
 
 function onAdd(){
     router.push('/editAddress');
 }
 
-function onEdit(){
-    router.push({ name: 'editAddress',query: { id: chosenAddressId.value } })
+function onEdit(item:any,index:any){
+    router.push({ name: 'editAddress',query: { id: item.id } })
 }
 
 </script>
